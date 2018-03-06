@@ -45,7 +45,7 @@ void loop() {
     Serial.println(sideDistance);
   }
 
-  // Korjataan suuntaa
+  // Korjataan suuntaa, jos liian lähellä seinää
   if (sideDistance <= 6) {
     pysahdy();
     kaannyVasemmalle(20);
