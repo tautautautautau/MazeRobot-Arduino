@@ -13,6 +13,7 @@ Ultrasonic sidePing(TRIG_PIN2, ECHO_PIN2);
 AF_DCMotor motor1(1, MOTOR12_8KHZ);
 AF_DCMotor motor2(2, MOTOR12_8KHZ);
 
+// Muuttujien alustus
 int debug = 0;
 int etaisyysEdessa = 12;
 int etaisyysSivulla = 18;
@@ -20,17 +21,22 @@ int nopeus = 150;
 
 void setup() {
   Serial.begin(9600);
+
+  // Aseta moottorien nopeudet
+  // Toinen moottori tehokkaampi, joten tasattava nopeuksia
   motor1.setSpeed(nopeus - 20);
   motor2.setSpeed(nopeus);
 }
 
 void loop() {
+  // Etäisyyksien mittaaminen
   float frontDistance, sideDistance;
   float frontmicrosec = frontPing.timing();
   frontDistance = frontPing.CalcDistance(frontmicrosec,Ultrasonic::CM);
   float sidemicrosec = sidePing.timing();
   sideDistance = sidePing.CalcDistance(sidemicrosec,Ultrasonic::CM);
 
+  // Debug tarkoitukseen
   if (debug == 1) {
     Serial.print("frontDistance: ");
     Serial.println(frontDistance);
@@ -68,6 +74,9 @@ void loop() {
   eteenpain();
   delay(100);
 }
+
+
+// Tästä alkaa liikkumisfunktiot
 
 void eteenpain() {
   motor1.run(FORWARD);
