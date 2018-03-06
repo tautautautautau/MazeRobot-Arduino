@@ -2,14 +2,15 @@
 #include <Ultrasonic.h>
 #include <AFMotor.h>
 
+// Pinnien alustus
 int TRIG_PIN1 = 50;
 int ECHO_PIN1 = 46;
 int TRIG_PIN2 = 26;
 int ECHO_PIN2 = 24;
 
+// Sensorien ja moottorien alustus
 Ultrasonic frontPing(TRIG_PIN1, ECHO_PIN1);
 Ultrasonic sidePing(TRIG_PIN2, ECHO_PIN2);
-
 AF_DCMotor motor1(1, MOTOR12_8KHZ);
 AF_DCMotor motor2(2, MOTOR12_8KHZ);
 
@@ -22,7 +23,7 @@ int nopeus = 150;
 void setup() {
   Serial.begin(9600);
 
-  // Aseta moottorien nopeudet
+  // Moottorien nopeuksien alustus
   // Toinen moottori tehokkaampi, joten tasattava nopeuksia
   motor1.setSpeed(nopeus - 20);
   motor2.setSpeed(nopeus);
